@@ -3,14 +3,14 @@
 
 ### PARAMETRES ###
 
-#USB_NAME="GXY_SAFE"
+USB_NAME="GXY_SAFE"
 
 # Gather the intel from files.txt and reformat it (remove comments, remove
 # trailing white spaces and remove empty lines)
 intel=$(cat "./files.txt" | gsed -e "s/#.*$//;s/\s*$//;/^$/d;")
 
 originPrefix="$HOME"
-destinationPrefix=$(df -Hl | awk '/GXY_SAFE/ {print $1}')
+destinationPrefix="/Volumes/$USB_NAME"
 #destinationPrefix="/tmp/Yann"
 
 ### FUNCITON ###
@@ -42,6 +42,5 @@ while IFS= read -r line;do # go through every line in intel
         file=$(remove_white_spaces "$line")
         copie "$originPrefix/$origin/$file" "$destination/"
     fi
-    #if [[ ${line:0:1} == " "]]
 done <<< "$intel"
 
