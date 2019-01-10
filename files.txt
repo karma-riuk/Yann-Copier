@@ -1,3 +1,0 @@
-Documents/School/Semester 1/Roman Law -> School/Semestre 1/Roman Law: # Here is a comment that the code will ignore
-
-Documents/Work/Newspapers To Read -> Stuff to do/Newspapers: 
