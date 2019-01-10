@@ -32,7 +32,6 @@ while IFS= read -r line;do # go through every line in intel
         destination=$(remove_white_spaces $(echo $line | awk -F "->" '{$0=$2}1' | cut -d ":" -f 1))
         echo "going from >$origin< to >$destination<"
     else
-
         echo "$line is not information on the origin/destination"
     fi
     #if [[ ${line:0:1} == " "]]
