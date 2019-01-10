@@ -16,8 +16,8 @@ destinationPrefix="/Volumes/$USB_NAME"
 ### FUNCITON ###
 
 copie() {
-    #cp "$1" "$2"
-    echo cp "$1" "$2"
+    cp "$1" "$2"
+    #echo cp "$1" "$2"
 }
 
 remove_white_spaces(){
