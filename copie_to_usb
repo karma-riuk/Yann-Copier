@@ -38,9 +38,10 @@ while IFS= read -r line;do # go through every line in intel
         destination="$destinationPrefix/"$(remove_white_spaces "$(echo $line | awk -F "->" '{$0=$2}1' | cut -d ":" -f 1)")
 
         mkdir -p "$destination"
-    elif [[ $origin != "" && $destination != "" ]]; then
-        file=$(remove_white_spaces "$line")
-        copie "$originPrefix/$origin/$file" "$destination/"
+        copie "$originPrefix/$origin" "$destination/"
+    #elif [[ $origin != "" && $destination != "" ]]; then
+        #file=$(remove_white_spaces "$line")
+        #copie "$originPrefix/$origin/$file" "$destination/"
     fi
 done <<< "$intel"
 

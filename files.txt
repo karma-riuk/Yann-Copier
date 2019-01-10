@@ -1,8 +1,3 @@
 Documents/School/Semester 1/Roman Law -> School/Semestre 1/Roman Law: # Here is a comment that the code will ignore
-    Law Text 1.pdf
-    Law Text 1.tex
-    Law Text 2.pdf
 
 Documents/Work/Newspapers To Read -> Stuff to do/Newspapers: 
-    NZZ 2019-01-10.pdf
-    New York Times 2019-01-09.pdf
