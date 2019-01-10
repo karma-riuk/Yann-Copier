@@ -21,7 +21,7 @@ copie() {
 }
 
 remove_white_spaces(){
-    echo "$1" | sed -e "s/^\s*//;s/\s*$//"
+    echo "$1" | gsed -e "s/^\s*//;s/\s*$//"
 }
 
 ### CODE ###
