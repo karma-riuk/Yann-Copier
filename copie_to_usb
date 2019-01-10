@@ -7,10 +7,10 @@ USB_NAME="GXY_SAFE"
 
 # Gather the intel from files.txt and reformat it (remove comments, remove
 # trailing white spaces and remove empty lines)
-intel=$(cat "./files.txt" | sed -e "s/#.*$//;s/\s*$//;/^$/d;")
+intel=$(cat "./files.txt" | gsed -e "s/#.*$//;s/\s*$//;/^$/d;")
 
 originPrefix="$HOME"
-destinationPrefix=$(df -HL | awk '/$USB_NAME/ {print $1}')
+destinationPrefix=$(df -Hl | awk '/$USB_NAME/ {print $1}')
 #destinationPrefix="/tmp/Yann"
 
 ### FUNCITON ###
