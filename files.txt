@@ -1,0 +1,7 @@
+Documents/EPFL -> Yann: # The following files will be copied from the
+                        #~/Documents/EPFL/ directory to the /tmp/Yann/ directory
+    moi.jpg
+    toi.pdf
+
+/tmp/yann2:
+    moi.jpg
