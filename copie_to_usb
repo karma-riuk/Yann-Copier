@@ -44,6 +44,7 @@ echo ""
 echo ""
 echo "Your files will be synced with \"$USB_NAME\""
 echo ""
+echo ""
 
 #USB_NAME="GXY_SAFE"
 
@@ -57,7 +58,7 @@ destinationPrefix="/Volumes/$USB_NAME"
 ### FUNCTIONS ###
 
 copie() {
-    rsync -rutLa --delete --info=progress2 "$1" "$2" > "./log"
+    rsync -rutLa --delete --info=progress2 "$1" "$2" #> "./log"
     #echo cp "$1" "$2"
 }
 

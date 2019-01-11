@@ -1,4 +1,0 @@
-#!/bin/bash
-
-cat ./log | awk '{ print $3 " done, " $5 " remaning" }' | terminal-notifier -title "Backup progress"
-
