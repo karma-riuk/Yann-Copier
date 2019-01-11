@@ -3,7 +3,49 @@
 
 ### PARAMETRES ###
 
-USB_NAME="GXY_SAFE"
+OPTIONS=( 
+    "GXY_SAFE" 
+    "GXY_MEGASAFE"
+    )
+
+prompt=""
+for (( i = 0; i < ${#OPTIONS[@]}; i++ )); do
+    if [[ "$(df -Hl | grep "/Volumes/${OPTIONS[$i]}")" != "" ]]; then
+        prompt+="$((i+1)): ${OPTIONS[$i]}\n";
+    fi
+done
+
+if [[ $prompt == "" ]]; then
+    printf "ERROR: You have not device plugged in, please plug at least of these:\n"
+    for (( i = 0; i < ${#OPTIONS[@]}; i++ )); do
+        printf " - ${OPTIONS[$i]}\n";
+    done
+fi
+
+USB_NAME=""
+while [[ $USB_NAME == "" ]]; do
+    printf "$prompt"
+    read -r -n 1 resp
+    if [[ $resp -ge 1 && $resp -le ${#OPTIONS[@]} ]]; then
+        USB_NAME="${OPTIONS[$((resp-1))]}"
+    else
+        printf "\nError: mauvais input :-)\n"
+    fi
+
+    #if [[ $resp == "1" ]];then
+        #USB_NAME="GXY_SAFE"
+    #elif [[ $resp == "2" ]];then
+        #USB_NAME="GXY_MEGASAFE"
+    #else
+        #printf "\nError: mauvais input :-)\n"
+    #fi
+done
+
+echo ""
+echo "The device that will be synced is \"$USB_NAME\""
+echo ""
+
+#USB_NAME="GXY_SAFE"
 
 # Gather the intel from files.txt and reformat it (remove comments, remove
 # trailing white spaces and remove empty lines)
