@@ -4,9 +4,13 @@
 ### PARAMETRES ###
 
 OPTIONS=( 
+
     "GXY_SAFE" 
     "GXY_MEGASAFE"
-    )
+
+)
+
+### INITIALISATION ###
 
 prompt=""
 for (( i = 0; i < ${#OPTIONS[@]}; i++ )); do
@@ -50,7 +54,7 @@ intel=$(cat "./files.txt" | gsed -e "s/#.*$//;s/\s*$//;/^$/d;")
 #originPrefix="$HOME"
 destinationPrefix="/Volumes/$USB_NAME"
 
-### FUNCTION ###
+### FUNCTIONS ###
 
 copie() {
     rsync -rutLa --delete --info=progress2 "$1" "$2" > "./log"
