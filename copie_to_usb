@@ -48,9 +48,8 @@ intel=$(cat "./files.txt" | gsed -e "s/#.*$//;s/\s*$//;/^$/d;")
 
 #originPrefix="$HOME"
 destinationPrefix="/Volumes/$USB_NAME"
-#destinationPrefix="/tmp/Yann"
 
-### FUNCITON ###
+### FUNCTION ###
 
 copie() {
     rsync -rutLa --delete  "$1" "$2"
