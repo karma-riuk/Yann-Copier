@@ -37,6 +37,7 @@ else
 fi
 
 echo ""
+echo ""
 echo "Your files will be synced with \"$USB_NAME\""
 echo ""
 
