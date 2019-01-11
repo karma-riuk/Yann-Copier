@@ -52,7 +52,7 @@ destinationPrefix="/Volumes/$USB_NAME"
 ### FUNCTION ###
 
 copie() {
-    rsync -rutLa --delete  "$1" "$2"
+    rsync -rutLa --delete --info=progress2 "$1" "$2" > "./log"
     #echo cp "$1" "$2"
 }
 
