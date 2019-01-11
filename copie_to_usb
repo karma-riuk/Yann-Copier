@@ -20,29 +20,24 @@ if [[ $prompt == "" ]]; then
     for (( i = 0; i < ${#OPTIONS[@]}; i++ )); do
         printf " - ${OPTIONS[$i]}\n";
     done
+    exit
+elif [[ "$(echo "$prompt" | grep -o "\n" | wc -l)" == "1" ]]; then 
+    USB_NAME=${prompt:3:${#prompt}-5}
+else
+    USB_NAME=""
+    while [[ $USB_NAME == "" ]]; do
+        printf "$prompt"
+        read -r -n 1 resp
+        if [[ $resp -ge 1 && $resp -le ${#OPTIONS[@]} ]]; then
+            USB_NAME="${OPTIONS[$((resp-1))]}"
+        else
+            printf "\nError: mauvais input :-)\n"
+        fi
+    done
 fi
 
-USB_NAME=""
-while [[ $USB_NAME == "" ]]; do
-    printf "$prompt"
-    read -r -n 1 resp
-    if [[ $resp -ge 1 && $resp -le ${#OPTIONS[@]} ]]; then
-        USB_NAME="${OPTIONS[$((resp-1))]}"
-    else
-        printf "\nError: mauvais input :-)\n"
-    fi
-
-    #if [[ $resp == "1" ]];then
-        #USB_NAME="GXY_SAFE"
-    #elif [[ $resp == "2" ]];then
-        #USB_NAME="GXY_MEGASAFE"
-    #else
-        #printf "\nError: mauvais input :-)\n"
-    #fi
-done
-
 echo ""
-echo "The device that will be synced is \"$USB_NAME\""
+echo "Your files will be synced with \"$USB_NAME\""
 echo ""
 
 #USB_NAME="GXY_SAFE"
@@ -58,7 +53,7 @@ destinationPrefix="/Volumes/$USB_NAME"
 ### FUNCITON ###
 
 copie() {
-    cp "$1" "$2"
+    rsync -rutLa --delete  "$1" "$2"
     #echo cp "$1" "$2"
 }
 
@@ -73,19 +68,9 @@ origin=""
 destination=""
 
 while IFS= read -r line;do # go through every line in intel
-    # if the line contains "->" it means that it will indicate the origin and
-    # the destination of the following files
-    #if [[ $line == *"->"* ]]; then
-        origin=$( remove_white_spaces "$(echo $line | awk -F "->" '{$0=$1}1')")
-        destination=$destinationPrefix"/""${origin##*/}"
-        #echo $destination
-        #destination="$destinationPrefix/"$(remove_white_spaces "$(echo $line | awk -F "->" '{$0=$2}1' | cut -d ":" -f 1)")
-
-        mkdir -p "$destination"
-        copie "$origin" "$destination"
-    #elif [[ $origin != "" && $destination != "" ]]; then
-        #file=$(remove_white_spaces "$line")
-        #copie "$originPrefix/$origin/$file" "$destination/"
-    #fi
+    origin=$( remove_white_spaces "$line")
+    destination=$destinationPrefix"/""${origin##*/}"
+    mkdir -p "$destination"
+    copie "$origin" "$destination"
 done <<< "$intel"
 
